@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            background: red;
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+    <script>
+            var a=100;
+            (function a(){
+                a=200;
+                console.log("a" in a);
+                console.log(a.prototype);
+            }())
+            console.log(a);
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

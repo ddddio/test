@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>控制Div属性</title>
+    <style>
+        input {
+            background: skyblue;
+            border-radius: 5px;
+        }
+
+        .button {
+            margin: 0 auto;
+            width: 320px;
+        }
+
+        .div {
+            height: 100px;
+            width: 100px;
+            background-color: rebeccapurple;
+            margin: auto;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let div;
+
+            function newElement() {
+                div = document.createElement("div");
+                div.className = "div";
+                document.body.appendChild(div);
+            };
+            newElement();
+
+            function add(event) {
+                let css = getComputedStyle(div);
+                event.target.name == "add-width" ? addAttritube(div, "width", Number.parseInt(css.width) + 100 +
+                    "px") : addAttritube(div, "height", Number.parseInt(css.height) + 100 + "px");
+            }
+
+            function addAttritube(element, attritube, value) {
+                element.style[attritube] = value;
+            }
+            document.querySelector('[name="hidden"]').onclick = event => {
+                if (event.target.value == "隐藏") {
+                    addAttritube(div, "display", "none");
+                    event.target.value = "显示";
+                } else {
+                    addAttritube(div, "display", "block");
+                    event.target.value = "隐藏";
+                }
+            };
+            document.querySelector("[name='add-width']").onclick = add;
+            document.querySelector("[name='add-height']").onclick = add;
+            document.querySelector("[name='random-color']").onclick = event => {
+                addAttritube(div,"backgroundColor","#"+Math.ceil(Math.random()*16777215).toString(16));
+            }
+            document.querySelector("[name='reset']").onclick=event=>{
+                document.body.removeChild(div);
+                newElement();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="button">
+        <input type="button" name="add-width" value="添加宽度">
+        <input type="button" name="add-height" value="添加高度">
+        <input type="button" name="random-color" value="随机颜色">
+        <input type="button" name="hidden" value="隐藏">
+        <input type="button" name="reset" value="重置">
+    </div>
+</body>
+
+</html>
